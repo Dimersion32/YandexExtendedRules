@@ -1,6 +1,3 @@
-! yandex.ru##.SettingsToolbar
-! yandex.ru##.PreventionFeature.SearchBlock_hasHover.SearchBlock
-! yandex.ru##.RequestMeta-Level_type_antispam.RequestMeta-Level
 yandex.ru##.SearchPrevention.Prevention
 yandex.ru##.PreventionFeature.SearchBlock_hasHover.SearchBlock
 yandex.ru##.AliceFabContainer.VanillaReact
