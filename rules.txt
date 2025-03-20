@@ -1,0 +1,17 @@
+! yandex.ru##.SettingsToolbar
+! yandex.ru##.PreventionFeature.SearchBlock_hasHover.SearchBlock
+! yandex.ru##.RequestMeta-Level_type_antispam.RequestMeta-Level
+yandex.ru##.SearchPrevention.Prevention
+yandex.ru##.PreventionFeature.SearchBlock_hasHover.SearchBlock
+yandex.ru##.AliceFabContainer.VanillaReact
+ya.ru##.SplashscreenCentreButton_layout_system_centre_dark_close-button.SplashscreenCentreButton.Distribution-SplashScreenModal.Modal_hasAnimation.Modal_visible.Modal
+yandex.ru###serp-list-geo-PMRH5_W
+yandex.ru###popup-desktop-rectangle-PMVD2k80
+yandex.ru###popup-desktop-rectangle-PMh7Won > .Distribution
+yandex.ru###popup-desktop-rectangle-PMhgqUC > .Distribution
+yandex.ru##.PopupDesktop-Content
+yandex.ru##.DistributionLinkBro
+yandex.ru##.Organic-Warning.Warning_display_block.Warning_size_m.Warning_tooltip.Warning_type_roskomnadzor.Warning.xzz0bySbwEbM0C6Tc
+yandex.ru##.Organic-Warning.Warning_display_block.Warning_size_m.Warning_tooltip.Warning_type_roskomnadzor.Warning.VanillaReact
+yandex.ru##.RequestMeta_view_minified.RequestMeta
+yandex.ru##.DistributionSerpList_geoSnippet.DistributionSerpList.Distribution
