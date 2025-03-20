@@ -1,0 +1,14 @@
+/* Исправления стилей поисковой выдачи */
+.serp-item_card {
+	background-color: var(--depot-color-bg-secondary);
+}
+
+.content__left .Favicon_outer {
+	position: absolute;
+	left: -44px
+}
+
+/* Блокировка блоков рекламы в поиске видео */
+.SerpListFeature > li:not(.SearchBlock):not(.VideoSnippetSerpFeature) {
+    display: none; 
+}
