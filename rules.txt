@@ -1,17 +1,72 @@
 ! Title: Yandex Extended Rules
-! Expires: 5 days
+! Expires: 1 days
 ! Homepage: https://github.com/Dimersion32/YandexExtendedRules
-yandex.ru##.SearchPrevention.Prevention
-yandex.ru##.PreventionFeature.SearchBlock_hasHover.SearchBlock
-yandex.ru##.AliceFabContainer.VanillaReact
-ya.ru##.SplashscreenCentreButton_layout_system_centre_dark_close-button.SplashscreenCentreButton.Distribution-SplashScreenModal.Modal_hasAnimation.Modal_visible.Modal
-yandex.ru###serp-list-geo-PMRH5_W
-yandex.ru###popup-desktop-rectangle-PMVD2k80
-yandex.ru###popup-desktop-rectangle-PMh7Won > .Distribution
-yandex.ru###popup-desktop-rectangle-PMhgqUC > .Distribution
-yandex.ru##.PopupDesktop-Content
-yandex.ru##.DistributionLinkBro
-yandex.ru##.Organic-Warning.Warning_display_block.Warning_size_m.Warning_tooltip.Warning_type_roskomnadzor.Warning.xzz0bySbwEbM0C6Tc
-yandex.ru##.Organic-Warning.Warning_display_block.Warning_size_m.Warning_tooltip.Warning_type_roskomnadzor.Warning.VanillaReact
-yandex.ru##.RequestMeta_view_minified.RequestMeta
-yandex.ru##.DistributionSerpList_geoSnippet.DistributionSerpList.Distribution
+
+! общие фильтры рекламных сервисов
+mc.yandex.ru^$third-party
+an.yandex.ru^
+
+!общие фильтры рекламы без обфускации
+yandex.ru,ya.ru##.serp-adv
+yandex.ru,ya.ru##.serp-item_card_ad
+yandex.ru,ya.ru##[data-fast-name="adv"]
+yandex.ru,ya.ru##.advert
+yandex.*##.adv
+yandex.ru,ya.ru##.AdvPremium-List
+yandex.ru,ya.ru##li:has(> div > div[id^="search-list"][id*="-R-"])
+!yandex.ru,ya.ru##div[aria-label*="еклам" i] - ненадёжно
+!yandex.ru,ya.ru#?#.JustifierRowLayout-Incut:has(div[aria-label*="еклам" i])  - ненадёжно
+
+! дистрибуция (попап установки яндекса крч)
+yandex.ru,ya.ru##.DistributionPopup_visible
+
+! режем ВСЁ НАХУЙ где ссылки ведут через рекламные метрики РСЯ
+yandex.ru,ya.ru##li:has(a[href*="/search/_sttc/"])
+! убираем карусель продаж в самом верху для картинок
+yandex.ru,ya.ru##.ImagesApp > div > div:has(div.Scroller.Scroller_widthFull.Scroller_arrowsPosition_start.Scroller_scrollDirection_none.Scroller_hasArrows)
+! и убираем там же карусель рекламы 
+ya.ru##.ImagesApp > div > div:has(div:has(div:has(a.Link.Link_view_default)))
+! убираем блядский блок сбоку от картинки второй который под блоком с поиском и "о картинке" - крч где shadow root дважды и дохуя вложенности
+yandex.ru,ya.ru##.ImagesViewer-LayoutSideblock_bottomless > div > div > div:not(:has(h2, h3))
+ya.ru##.ImagesViewer-LayoutSideblock > div > div > div:not(:has(h2, h3))
+!убираем карточку под конкретной картинкой когда её уже открыли карусель крч
+yandex.ru,ya.ru##.ImagesViewer-Products_activated.ImagesViewer-Products
+
+!убираем лайк с картинок
+yandex.ru,ya.ru##.ImagesViewer-Favorites.MediaFavoritesButton_view_circle.MediaFavoritesButton.Button
+! убираем ценник с картинок в общей массе
+yandex.ru,ya.ru##div.WhereToBuyLabel
+
+! в странице в поисковой выдечаей крч боковая левая половина - там иногда полезный контент (выдержка из вики) а иногда реклама
+ya.ru##div.main__container > .main__content > .content > div:has([id^="advRsyaReact_"])
+
+! кнопочка "УСТАНОВИТЕ ЯНДЕКС" в шапке
+ya.ru##.DistributionLinkBro_design2025.DistributionLinkBro_layout_neuro.DistributionLinkBro.DistributionButton_view_neuro-gradient.DistributionButton.Button_link.Button
+
+ya.ru,yandex.ru##.JustifierRowLayout-Incut:has(div[aria-label="Баннер с рекламой"])
+ya.ru,yandex.ru##.JustifierRowLayout-Incut:has(div[aria-label="Рекламный баннер"])
+
+! рекомендации яндекс карт на главной (небезопасность 50/50)
+yandex.ru##.home-panel-content-view div[data-chunk="discovery-home"]
+
+! реклама на яндекс картах на главной НЕБЕЗОПАСНО на проверке
+yandex.ru##.home-panel-content-view__body > div > div:not(.home-panel-content-view__wrapper)
+
+! Рекомендуемые похожие места в карточке места на картах
+yandex.ru##._materialized.business-tab-wrapper > .business-tab-wrapper__content > div > div > div:has(.discovery-relevant-view)
+
+! "Ещё может подойти" в карточке места на картах (как правило ресторанов)
+yandex.ru##.business-card-competitor-org-view
+
+! реклама провайдеров интернета в карточке дома (дополнительно до скрываем что не скрыл штатный блокировщик)
+yandex.ru##div.toponym-card-view__section:has(.card-providers-view)
+
+! реклама в поиске видео
+yandex.ru##li.AdvSnippetFeature
+
+! реклама в яндекс переводчике боковая справа
+translate.yandex.ru##.side-block > div
+
+! рекламная плашка под видео в режиме его просмотра МОЖЕТ СЛОМАТЬСЯ ПРИ СМЕНЕ CSS
+yandex.ru##.Modal-Content > div[class*="-PopupInnerContent"] > div > div:has(section) > div > div[id*="video-viewer-"]
+
