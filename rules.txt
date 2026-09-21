@@ -72,3 +72,25 @@ translate.yandex.ru##.side-block > div
 ! рекламная плашка под видео в режиме его просмотра МОЖЕТ СЛОМАТЬСЯ ПРИ СМЕНЕ CSS
 yandex.ru,ya.ru##.Modal-Content > div[class*="-PopupInnerContent"] > div > div:has(section) > div > div[id*="video-viewer-"]
 
+
+
+
+!два блока ниже - основная вырезалка в мобильном поиске. отличается от десктопа тем, что в десктопе <li> а тут пара вложеных <div>
+!это вырезался рекламы с первой страницы
+ya.ru,yandex.ru##.main__content > .grid > div:not(#search-result):has(.Organic.Typo.Typo_text_m.Typo_line_s:has(a[href*="/search/_sttc/"]))
+! а если нажать на кнопку "Показать ещё" подгружается доп блок #search-result туда где обычные <div> и внутри него уже карточки с <div>
+ya.ru,yandex.ru##.main__content > .grid > #search-result > div:has(.Organic.Typo.Typo_text_m.Typo_line_s:has(a[href*="/search/_sttc/"]))
+
+
+! мобильная реклама - карусель при поиске (работа, предложения кандидатов, товары)
+ya.ru,yandex.ru##.main__content > .grid > div:has(.AdvGallery)
+
+
+
+! Мобильная реклама при просмотре конкретной картинки под картинкой (увы как есть, стабильнее не смог ввиду ограничений)
+ya.ru,yandex.ru##.ImagesTouchViewer-Item.ImagesTouchViewer-ViewerItem_active.ImagesTouchViewer-ViewerItem > div > div[class*="ImagesTouchViewer-Card_"]
+! Мобильная реклама при просмотре конкретной картинки, если листать ниже похожие, между ними карусельки с рекламой
+ya.ru,yandex.ru##.ImagesTouchViewer-Content.ImagesTouchViewer-ViewerItemContent_active.ImagesTouchViewer-ViewerItemContent > .ImagesTouchViewer-ContentCard.ImagesTouchViewer-Rim.ImagesViewerRim.ImagesRelatedImages > .JustifierRowLayout > div > div.JustifierRowLayout-Incut
+
+! Мобильная Попап-дистрибуция яндекса внизу страницы
+yandex.ru,ya.ru##.Distribution
