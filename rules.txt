@@ -64,7 +64,7 @@ yandex.ru,ya.ru##.business-card-competitor-org-view
 yandex.ru,ya.ru##div.toponym-card-view__section:has(.card-providers-view)
 
 ! реклама в поиске видео
-yandex.ru,ya.ru##li.AdvSnippetFeature
+ya.ru##li.AdvSnippetFeature
 
 ! реклама в яндекс переводчике боковая справа
 translate.yandex.ru##.side-block > div
