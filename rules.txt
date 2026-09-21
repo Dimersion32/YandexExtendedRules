@@ -23,7 +23,8 @@ yandex.ru,ya.ru##li:has(> div > div[id^="search-list"][id*="-R-"])
 yandex.ru,ya.ru##.DistributionPopup_visible
 
 ! режем ВСЁ НАХУЙ где ссылки ведут через рекламные метрики РСЯ
-yandex.ru,ya.ru##li:has(a[href*="/search/_sttc/"])
+yandex.ru,ya.ru##ul > div:has(a[href*="/search/_sttc/"])
+yandex.ru,ya.ru##ul > li:has(a[href*="/search/_sttc/"])
 ! убираем карусель продаж в самом верху для картинок
 yandex.ru,ya.ru##.ImagesApp > div > div:has(div.Scroller.Scroller_widthFull.Scroller_arrowsPosition_start.Scroller_scrollDirection_none.Scroller_hasArrows)
 ! и убираем там же карусель рекламы 
