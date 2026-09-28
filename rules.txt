@@ -2,13 +2,15 @@
 ! Expires: 1 days
 ! Homepage: https://github.com/Dimersion32/YandexExtendedRules
 
-! общие фильтры рекламных сервисов
+! Общие фильтры рекламных сервисов
 mc.yandex.ru^$third-party
 an.yandex.ru^
 mc.ya.ru^$third-party
 an.ya.ru^
 
-!общие фильтры рекламы без обфускации
+
+! Общие фильтры рекламы без обфускации (by Eugene)
+!я хз делают ли они что-то вообще, мб да, парочку режут. пусть будут, потом проверю их на рекламо-нарезательные свойства
 yandex.ru,ya.ru##.serp-adv
 yandex.ru,ya.ru##.serp-item_card_ad
 yandex.ru,ya.ru##[data-fast-name="adv"]
@@ -17,81 +19,115 @@ yandex.ru,ya.ru##.adv
 yandex.ru,ya.ru##.AdvPremium-List
 yandex.ru,ya.ru##li:has(> div > div[id^="search-list"][id*="-R-"])
 !yandex.ru,ya.ru##div[aria-label*="еклам" i] - ненадёжно
-!yandex.ru,ya.ru#?#.JustifierRowLayout-Incut:has(div[aria-label*="еклам" i])  - ненадёжно
-
-! дистрибуция (попап установки яндекса крч)
-yandex.ru,ya.ru##.DistributionPopup_visible
-
-! режем ВСЁ НАХУЙ где ссылки ведут через рекламные метрики РСЯ
-yandex.ru,ya.ru##ul > div:has(a[href*="/search/_sttc/"])
-yandex.ru,ya.ru##ul > li:has(a[href*="/search/_sttc/"])
-! убираем карусель продаж в самом верху для картинок
-yandex.ru,ya.ru##.ImagesApp > div > div:has(div.Scroller.Scroller_widthFull.Scroller_arrowsPosition_start.Scroller_scrollDirection_none.Scroller_hasArrows)
-! и убираем там же карусель рекламы 
-yandex.ru,ya.ru##.ImagesApp > div > div:has(div:has(div:has(a.Link.Link_view_default)))
-! убираем блядский блок сбоку от картинки второй который под блоком с поиском и "о картинке" - крч где shadow root дважды и дохуя вложенности
-yandex.ru,ya.ru##.ImagesViewer-LayoutSideblock_bottomless > div > div > div:not(:has(h2, h3))
-yandex.ru,ya.ru##.ImagesViewer-LayoutSideblock > div > div > div:not(:has(h2, h3))
-!убираем карточку под конкретной картинкой когда её уже открыли карусель крч
-yandex.ru,ya.ru##.ImagesViewer-Products_activated.ImagesViewer-Products
-
-!убираем лайк с картинок
-yandex.ru,ya.ru##.ImagesViewer-Favorites.MediaFavoritesButton_view_circle.MediaFavoritesButton.Button
-! убираем ценник с картинок в общей массе
-yandex.ru,ya.ru##div.WhereToBuyLabel
-
-! в странице в поисковой выдечаей крч боковая левая половина - там иногда полезный контент (выдержка из вики) а иногда реклама
-yandex.ru,ya.ru##div.main__container > .main__content > .content > div:has([id^="advRsyaReact_"])
-
-! кнопочка "УСТАНОВИТЕ ЯНДЕКС" в шапке
-yandex.ru,ya.ru##.DistributionLinkBro_design2025.DistributionLinkBro_layout_neuro.DistributionLinkBro.DistributionButton_view_neuro-gradient.DistributionButton.Button_link.Button
-
+!yandex.ru,ya.ru#?#.JustifierRowLayout-Incut:has(div[aria-label*="еклам" i]) - ненадёжно
+! Распознавание рекламных баннеров по метке для вспомогательных технологий (по сути оно же и у Eugene - но там жадный квантификатор)
 ya.ru,yandex.ru##.JustifierRowLayout-Incut:has(div[aria-label="Баннер с рекламой"])
 ya.ru,yandex.ru##.JustifierRowLayout-Incut:has(div[aria-label="Рекламный баннер"])
+! Боковая колонка выдачи: может содержать как справочный контент, так и рекламные блоки
+yandex.ru,ya.ru##div.main__container > .main__content > .content > div:has([id^="advRsyaReact_"])
+! Рекламный органический сниппет с меткой рекламы
+yandex.ru,ya.ru##.Organic_withAdvLabel.Organic
+! Неполностью скрытые рекламные результаты в поисковой выдаче
+yandex.ru,ya.ru##ul#search-result > li:has(.Organic_withAdvLabel.Organic)
+! Рекламные элементы РСЯ, отслеживаемые по счётчикам кликов в выдаче
+yandex.ru,ya.ru##ul#search-result > li.serp-item:has(a.action-counter)
+! Блоки, ссылки которых проходят через рекламные метрики РСЯ (/search/_sttc/)
+yandex.ru,ya.ru##ul > div:has(a[href*="/search/_sttc/"])
+yandex.ru,ya.ru##ul > li:has(a[href*="/search/_sttc/"])
+! Рекламный сниппет в блоке поиска
+yandex.ru,ya.ru##li.AdvSnippetFeature.SearchBlock_hasHover.SearchBlock
+! Кнопки избранного на карточках товаров в выдаче
+yandex.ru,ya.ru##.EProductSnippet2-Favorites-Container
 
-! рекомендации яндекс карт на главной (небезопасность 50/50)
+
+! Дистрибуция Яндекс Браузера
+yandex.ru,ya.ru##.DistributionPopup_visible
+! Кнопка установки Яндекс Браузера в шапке
+yandex.ru,ya.ru##.DistributionLinkBro_design2025.DistributionLinkBro_layout_neuro.DistributionLinkBro.DistributionButton_view_neuro-gradient.DistributionButton.Button_link.Button
+! Мобильный попап дистрибуции в нижней части страницы
+yandex.ru,ya.ru##.Distribution
+! Неактивная кнопка перевода видео с предложением использовать Яндекс Браузер
+yandex.ru,ya.ru###lang-filter-short-button.SettingsToolbarShortFiltersButton_unsupported
+yandex.ru,ya.ru##.SettingsToolbarLangFilterDistributionOnboarding.MessageBox_view_tertiary.MessageBox_size_m.MessageBox_hasClose.MessageBox_layout_tooltip.MessageBox_opaque.MessageBox
+
+
+! Изображения (настольная версия)
+! Карусели коммерческих предложений в верхней части страницы изображений
+yandex.ru,ya.ru##.ImagesApp > div:not(.CbirLayoutTemplate) > div:has(.Scroller.Scroller_widthFull.Scroller_arrowsPosition_start.Scroller_hasArrows)
+! Рекламная карусель на странице изображений
+! Нестабильно: yandex.ru,ya.ru##.ImagesApp > div > div:has(div:has(div:has(a.Link.Link_view_default)))
+! Исправлено: правило не затрагивает страницу поиска похожих изображений
+yandex.ru,ya.ru##.ImagesApp > div:not(.CbirLayoutTemplate) > div:has(a.Link.Link_view_default)
+! Крупный рекламный блок в верхней части страницы изображений
+yandex.ru,ya.ru##.AdvMastHead
+! Боковой рекламный блок во вьюере изображения (высокая вложенность, в том числе shadow DOM)
+! В мобильной верстке ломает отображение картинок (наебал, нихуя оно не ломает)
+yandex.ru,ya.ru##.ImagesViewer-LayoutSideblock_bottomless > div > div > div:not(:has(h2, h3))
+yandex.ru,ya.ru##.ImagesViewer-LayoutSideblock > div > div > div:not(:has(h2, h3))
+! Карточка товаров под открытым изображением
+yandex.ru,ya.ru##.ImagesViewer-Products_activated.ImagesViewer-Products
+! Кнопка избранного во вьюере изображений
+yandex.ru,ya.ru##.ImagesViewer-Favorites.MediaFavoritesButton_view_circle.MediaFavoritesButton.Button
+! Метка цены на миниатюрах в общей ленте изображений
+yandex.ru,ya.ru##div.WhereToBuyLabel
+
+
+! Изображения (мобильная версия)
+! Реклама под открытым изображением. Селектор ограничен возможностями разметки
+!!ya.ru,yandex.ru##.ImagesTouchViewer-Item.ImagesTouchViewer-ViewerItem_active.ImagesTouchViewer-ViewerItem > div > div[class*="ImagesTouchViewer-Card_"]
+! Пофикшено
+ya.ru,yandex.ru##.ImagesTouchViewer-Item.ImagesTouchViewer-ViewerItem_active.ImagesTouchViewer-ViewerItem > div > div[class*="ImagesTouchViewer-Card_"]:not([class*="ImagesTouchViewer-Card_fullscreenMode"])
+! Рекламные вставки-карусели между похожими изображениями
+ya.ru,yandex.ru##.ImagesTouchViewer-Content.ImagesTouchViewer-ViewerItemContent_active.ImagesTouchViewer-ViewerItemContent > .ImagesTouchViewer-ContentCard.ImagesTouchViewer-Rim.ImagesViewerRim.ImagesRelatedImages > .JustifierRowLayout > div > div.JustifierRowLayout-Incut
+
+
+! Карты
+! Рекомендации на главной странице Карт. Возможны ложные срабатывания
 yandex.ru,ya.ru##.home-panel-content-view div[data-chunk="discovery-home"]
-
-! реклама на яндекс картах на главной НЕБЕЗОПАСНО на проверке
+! Рекламные блоки на главной странице Карт. Требует проверки на ложные срабатывания
 yandex.ru,ya.ru##.home-panel-content-view__body > div > div:not(.home-panel-content-view__wrapper)
-
-! Рекомендуемые похожие места в карточке места на картах
+! Рекомендуемые похожие организации в карточке места
 yandex.ru,ya.ru##._materialized.business-tab-wrapper > .business-tab-wrapper__content > div > div > div:has(.discovery-relevant-view)
-
-! "Ещё может подойти" в карточке места на картах (как правило ресторанов)
+! Блок «Ещё может подойти» в карточке организации
 yandex.ru,ya.ru##.business-card-competitor-org-view
-
-! реклама провайдеров интернета в карточке дома (дополнительно до скрываем что не скрыл штатный блокировщик)
+! Реклама интернет-провайдеров в карточке здания (дополнение к штатным фильтрам)
 yandex.ru,ya.ru##div.toponym-card-view__section:has(.card-providers-view)
+! Промо-рекомендации организаций в результатах поиска по Картам
+yandex.ru,ya.ru##._type_business.search-snippet-view__body:has(.direct-advert-view)
 
-! реклама в поиске видео
-ya.ru##li.AdvSnippetFeature
 
-! реклама в яндекс переводчике боковая справа
+! Видео
+! Реклама в выдаче поиска по видео
+yandex.ru,ya.ru##li.AdvSnippetFeature
+! Рекламная плашка под видео в режиме просмотра. Зависит от стабильности CSS-классов
+yandex.ru,ya.ru##.Modal-Content > div[class*="-PopupInnerContent"] > div > div:has(section) > div > div[id*="video-viewer-"]
+! Дисклеймер о возможной неточности ИИ-суммаризации видео
+yandex.ru,ya.ru##.VideoSummary-DisclaimerContainer_visible.VideoSummary-DisclaimerContainer
+! Подзаголовок о том, что суммаризация выполнена ИИ Алисы
+yandex.ru,ya.ru##.VideoSummary-HeaderSubTitle
+
+
+! Переводчик
+! Боковой рекламный блок в Яндекс Переводчике
 translate.yandex.ru##.side-block > div
 
-! рекламная плашка под видео в режиме его просмотра МОЖЕТ СЛОМАТЬСЯ ПРИ СМЕНЕ CSS
-yandex.ru,ya.ru##.Modal-Content > div[class*="-PopupInnerContent"] > div > div:has(section) > div > div[id*="video-viewer-"]
 
-
-
-
-!два блока ниже - основная вырезалка в мобильном поиске. отличается от десктопа тем, что в десктопе <li> а тут пара вложеных <div>
-!это вырезался рекламы с первой страницы
+! Мобильный поиск
+! Основные правила скрытия рекламы в мобильной выдаче.
+! На первой странице карточки оформлены вложенными div, а не li.
 ya.ru,yandex.ru##.main__content > .grid > div:not(#search-result):has(.Organic.Typo.Typo_text_m.Typo_line_s:has(a[href*="/search/_sttc/"]))
-! а если нажать на кнопку "Показать ещё" подгружается доп блок #search-result туда где обычные <div> и внутри него уже карточки с <div>
+! Дополнительная порция результатов после «Показать ещё» внутри #search-result
 ya.ru,yandex.ru##.main__content > .grid > #search-result > div:has(.Organic.Typo.Typo_text_m.Typo_line_s:has(a[href*="/search/_sttc/"]))
-
-
-! мобильная реклама - карусель при поиске (работа, предложения кандидатов, товары)
+! Рекламные карусели в мобильном поиске (вакансии, товары и аналогичные блоки)
 ya.ru,yandex.ru##.main__content > .grid > div:has(.AdvGallery)
 
 
+! Предупреждения Роскомнадзора
+! Предупреждение о сайтах, нарушающих требования РКН, в начале выдачи
+yandex.ru,ya.ru##.PreventionFeature_view_lite.PreventionFeature_type_rknWarning.PreventionFeature.SearchBlock_hasHover.SearchBlock
+! Уведомление об исключении части результатов по запросу РКН
+yandex.ru,ya.ru##.PreventionFeature_type_listRKN.PreventionFeature.SearchBlock
 
-! Мобильная реклама при просмотре конкретной картинки под картинкой (увы как есть, стабильнее не смог ввиду ограничений)
-ya.ru,yandex.ru##.ImagesTouchViewer-Item.ImagesTouchViewer-ViewerItem_active.ImagesTouchViewer-ViewerItem > div > div[class*="ImagesTouchViewer-Card_"]
-! Мобильная реклама при просмотре конкретной картинки, если листать ниже похожие, между ними карусельки с рекламой
-ya.ru,yandex.ru##.ImagesTouchViewer-Content.ImagesTouchViewer-ViewerItemContent_active.ImagesTouchViewer-ViewerItemContent > .ImagesTouchViewer-ContentCard.ImagesTouchViewer-Rim.ImagesViewerRim.ImagesRelatedImages > .JustifierRowLayout > div > div.JustifierRowLayout-Incut
-
-! Мобильная Попап-дистрибуция яндекса внизу страницы
-yandex.ru,ya.ru##.Distribution
+! Кнопка лайка котрая отвлекает. Помоему в поиске.
+yandex.ru,ya.ru##.FavoritesButtonHighlight_show.FavoritesButtonHighlight
+yandex.ru,ya.ru##.FavoritesButtonHighlight
